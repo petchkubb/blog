@@ -10,7 +10,7 @@ import IndexScreen from './src/screens/indexScreen';
 
 const Stack = createStackNavigator();
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -20,7 +20,7 @@ function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default () => {
   return (
