@@ -24,7 +24,9 @@ const IndexScreen = ({navigation}) => {
             <TouchableOpacity
               onPress={() => navigation.navigate('Show', {id: item.id})}>
               <View style={styles.row}>
-                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.title}>
+                  {item.title} - {item.id}
+                </Text>
                 <TouchableOpacity onPress={() => deleteBlogPosts(item.id)}>
                   <Image
                     source={require('../../assets/trash.png')}
