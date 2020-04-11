@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Context as BlogContext} from '../../src/context/BlogContext';
 
-const IndexScreen = () => {
+const IndexScreen = ({navigation}) => {
   const {state, addBlogPosts, deleteBlogPosts} = useContext(BlogContext);
 
   return (
@@ -21,15 +21,18 @@ const IndexScreen = () => {
         keyExtractor={(item) => item.title}
         renderItem={({item}) => {
           return (
-            <View style={styles.row}>
-              <Text style={styles.title}>{item.title}</Text>
-              <TouchableOpacity onPress={() => deleteBlogPosts(item.id)}>
-                <Image
-                  source={require('../../assets/trash.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Show', {id: item.id})}>
+              <View style={styles.row}>
+                <Text style={styles.title}>{item.title}</Text>
+                <TouchableOpacity onPress={() => deleteBlogPosts(item.id)}>
+                  <Image
+                    source={require('../../assets/trash.png')}
+                    style={styles.image}
+                  />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           );
         }}
       />
