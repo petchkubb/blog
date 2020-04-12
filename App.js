@@ -8,6 +8,7 @@ import {Provider as BlogProvider} from './src/context/BlogContext';
 
 import IndexScreen from './src/screens/indexScreen';
 import ShowScreen from './src/screens/ShowScreen';
+import CreateScreen from './src/screens/CreateScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const App = () => {
         screenOptions={{headerBackTitle: null, title: 'Blogs'}}>
         <Stack.Screen name="Index" component={IndexScreen} />
         <Stack.Screen name="Show" component={ShowScreen} />
+        <Stack.Screen name="Create" component={CreateScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

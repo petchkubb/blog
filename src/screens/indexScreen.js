@@ -4,18 +4,24 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Button,
   Image,
   TouchableOpacity,
 } from 'react-native';
 import {Context as BlogContext} from '../../src/context/BlogContext';
 
 const IndexScreen = ({navigation}) => {
-  const {state, addBlogPosts, deleteBlogPosts} = useContext(BlogContext);
+  navigation.setOptions({
+    headerRight: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <Image source={require('../../assets/add.png')} style={styles.add} />
+      </TouchableOpacity>
+    ),
+  });
+
+  const {state, deleteBlogPosts} = useContext(BlogContext);
 
   return (
     <View>
-      <Button title="Add Blog Post" onPress={addBlogPosts} />
       <FlatList
         data={state}
         keyExtractor={(item) => item.title}
@@ -58,6 +64,11 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
+  },
+  add: {
+    height: 20,
+    width: 20,
+    marginRight: 10,
   },
 });
 
