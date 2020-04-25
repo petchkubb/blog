@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
   View,
   Text,
@@ -18,7 +18,19 @@ const IndexScreen = ({navigation}) => {
     ),
   });
 
-  const {state, deleteBlogPosts} = useContext(BlogContext);
+  const {state, deleteBlogPosts, getBlogPosts} = useContext(BlogContext);
+
+  useEffect(() => {
+    getBlogPosts();
+
+    const listener = navigation.addListener('didFocus', () => {
+      getBlogPosts();
+    });
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   return (
     <View>
